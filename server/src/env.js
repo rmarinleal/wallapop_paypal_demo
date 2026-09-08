@@ -10,10 +10,18 @@ function required(name) {
   return process.env[name]?.trim() || "";
 }
 
+function strip(value) {
+  return String(value || "")
+    .trim()
+    .replace(/^["']|["']$/g, "")
+    .replace(/\/$/, "");
+}
+
 export const env = {
   paypalClientId: required("PAYPAL_CLIENT_ID"),
   paypalClientSecret: required("PAYPAL_CLIENT_SECRET"),
   paypalEnv: (process.env.PAYPAL_ENV || "sandbox").toLowerCase(),
+  paypalUrl: strip(process.env.PAYPAL_URL),
   currency: process.env.PAYPAL_CURRENCY || "EUR",
   brandName: process.env.PAYPAL_BRAND_NAME || "Wallapop",
   port: Number(process.env.PORT) || 8012,
@@ -25,6 +33,7 @@ export function isLive() {
 }
 
 export function paypalApiBase() {
+  if (env.paypalUrl) return env.paypalUrl;
   return isLive() ? "https://api-m.paypal.com" : "https://api-m.sandbox.paypal.com";
 }
 

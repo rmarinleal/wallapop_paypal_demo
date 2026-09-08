@@ -21,6 +21,7 @@ app.get("/api/config", (_req, res) => {
   res.json({
     clientId: env.paypalClientId,
     env: env.paypalEnv,
+    apiUrl: env.paypalUrl || undefined,
     currency: env.currency,
     brandName: env.brandName,
   });

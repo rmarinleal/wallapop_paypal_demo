@@ -20,6 +20,7 @@ cp .env.example .env
 PAYPAL_CLIENT_ID=...
 PAYPAL_CLIENT_SECRET=...
 PAYPAL_ENV=sandbox
+PAYPAL_URL=https://api-m.sandbox.paypal.com
 PAYPAL_CURRENCY=EUR
 PAYPAL_BRAND_NAME=Wallapop
 PORT=8012
