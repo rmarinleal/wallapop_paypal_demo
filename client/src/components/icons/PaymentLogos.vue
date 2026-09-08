@@ -11,19 +11,14 @@ defineProps({
       <i></i><i></i>
     </span>
     <span v-if="names.includes('bizum')" class="chip bizum">bizum</span>
-    <span v-if="names.includes('klarna')" class="chip klarna">Klarna</span>
-    <span v-if="names.includes('paypal')" class="paypal" aria-label="PayPal">
-      <svg viewBox="0 0 24 24" width="28" height="28">
-        <path
-          fill="#003087"
-          d="M7.2 20.4h1.8l.5-3.1h1.7c2.8 0 4.3-1.3 4.7-3.8.5-2.6-.7-4.1-3.3-4.1H8.6L7.2 20.4z"
-        />
-        <path
-          fill="#009cde"
-          d="M8.8 9.4h4.1c1.8 0 2.8.7 2.6 2.4-.3 2.1-1.6 3.3-3.8 3.3H9.8l.5-3.1.6-2.6z"
-        />
-      </svg>
-    </span>
+    <img
+      v-if="names.includes('paypal')"
+      class="paypal"
+      src="/paypal-logo.png"
+      alt="PayPal"
+      width="36"
+      height="36"
+    />
   </span>
 </template>
 
@@ -53,11 +48,6 @@ defineProps({
   text-transform: lowercase;
 }
 
-.klarna {
-  background: #ffb3c7;
-  color: #0a0a0a;
-}
-
 .mc {
   width: 28px;
   height: 18px;
@@ -81,5 +71,11 @@ defineProps({
   right: 0;
   background: #f79e1b;
   opacity: 0.92;
+}
+
+.paypal {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 </style>

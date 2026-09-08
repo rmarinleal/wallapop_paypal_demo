@@ -1,0 +1,13 @@
+{
+  "name": "wallapop-paypal-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build --prefix client"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2"
+  }
+}

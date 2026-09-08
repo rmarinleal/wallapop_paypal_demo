@@ -1,6 +1,6 @@
 import { computed, reactive } from "vue";
 
-const ADDRESS = "Avenida Miguel Delibes 61 5-A, 28052 Madrid, España";
+const ADDRESS = "Calle de Fuencarral 78, 3º B, 28004 Madrid, España";
 
 export const PAYMENT_METHODS = [
   {
@@ -16,12 +16,6 @@ export const PAYMENT_METHODS = [
     logos: ["bizum"],
   },
   {
-    id: "klarna",
-    label: "Klarna",
-    demoOnly: true,
-    logos: ["klarna"],
-  },
-  {
     id: "paypal",
     label: "PayPal",
     fundingSource: "paypal",
@@ -30,7 +24,6 @@ export const PAYMENT_METHODS = [
   {
     id: "paylater",
     label: "PayPal Paylater",
-    subtitle: "Paga en 3 plazos",
     fundingSource: "paylater",
     logos: ["paypal"],
   },

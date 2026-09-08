@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import PayPalPayLaterMessage from "../components/PayPalPayLaterMessage.vue";
 import { openCheckout } from "../store/checkout.js";
 
 const route = useRoute();
@@ -47,10 +48,7 @@ watch(() => route.params.id, load);
           <h1>{{ product.title }}</h1>
           <p class="meta">{{ product.condition }} · {{ product.extra }}</p>
           <p class="amount">{{ product.price }} €</p>
-          <p class="promo">
-            3 plazos sin intereses (0% TAE) con Klarna o
-            <strong>PayPal Paylater</strong>. Más información
-          </p>
+          <PayPalPayLaterMessage :amount="product.price" />
           <button class="teal-btn" type="button" @click="openCheckout(product)">
             Comprar
           </button>
@@ -138,12 +136,7 @@ watch(() => route.params.id, load);
 .amount {
   font-size: 36px;
   font-weight: 700;
-  margin: 8px 0;
-}
-
-.promo {
-  font-size: 13px;
-  color: var(--muted);
+  margin: 8px 0 10px;
 }
 
 .seller,

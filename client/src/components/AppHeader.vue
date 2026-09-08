@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import WallapopLogo from "./icons/WallapopLogo.vue";
-
 const router = useRouter();
 const query = ref("");
 
@@ -15,7 +13,7 @@ function search() {
   <header class="header">
     <div class="header-main">
       <router-link to="/" class="brand" aria-label="Wallapop">
-        <WallapopLogo />
+        <img src="/wallapop-logo.png" alt="Wallapop" height="46" />
       </router-link>
 
       <form class="search" @submit.prevent="search">
@@ -61,6 +59,12 @@ function search() {
   gap: 24px;
   align-items: center;
   padding: 14px 0;
+}
+
+.brand img {
+  display: block;
+  height: 46px;
+  width: auto;
 }
 
 .search {

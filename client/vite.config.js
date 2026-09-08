@@ -7,7 +7,14 @@ export default defineConfig({
     port: 8011,
     strictPort: true,
     proxy: {
-      "/api": "http://localhost:8012",
+      "/api": {
+        target: "http://localhost:8012",
+        changeOrigin: false,
+        headers: {
+          "x-forwarded-host": "localhost:8011",
+          "x-forwarded-proto": "http",
+        },
+      },
     },
   },
 });

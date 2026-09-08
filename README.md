@@ -29,6 +29,27 @@ CLIENT_ORIGIN=http://localhost:8011
 
 El secret nunca se envía al navegador. `GET /api/config` solo expone `clientId`, `env` y `currency`.
 
+## Vercel
+
+Conecta este repo en Vercel (Root Directory vacío, el `vercel.json` ya define build y API).
+
+En **Settings → Environment Variables** añade:
+
+```
+PAYPAL_CLIENT_ID
+PAYPAL_CLIENT_SECRET
+PAYPAL_ENV=sandbox
+PAYPAL_URL=https://api-m.sandbox.paypal.com
+PAYPAL_CURRENCY=EUR
+PAYPAL_BRAND_NAME=Wallapop
+```
+
+No subas el `.env`. En producción las `return_url` / `cancel_url` de PayPal se calculan con el dominio de Vercel (`https://tu-proyecto.vercel.app/checkout/success`).
+
+En el dashboard de PayPal, añade esa URL de éxito y cancelación como return URLs de la app.
+
+El front y `/api` quedan en el mismo dominio, así el SDK y el checkout no dependen de `localhost`.
+
 ## Arrancar
 
 ```bash
