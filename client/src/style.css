@@ -1,0 +1,100 @@
+:root {
+  --teal: #13c1ac;
+  --teal-dark: #0eaea0;
+  --teal-soft: #e8faf7;
+  --ink: #253238;
+  --muted: #607d8b;
+  --line: #e6eaed;
+  --bg: #f4f6f7;
+  --card: #ffffff;
+  --purple: #8f5ae8;
+  --danger: #d32f2f;
+  --shadow: 0 8px 30px rgba(16, 24, 40, 0.12);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.page {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 20px 0 64px;
+}
+
+.teal-btn {
+  border: 0;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 14px 20px;
+  width: 100%;
+}
+
+.teal-btn:hover:not(:disabled) {
+  background: var(--teal-dark);
+}
+
+.teal-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.ghost-btn {
+  border: 1px solid #cfd8dc;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 10px 16px;
+}
+
+.link {
+  color: var(--teal);
+  font-weight: 600;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.price {
+  font-weight: 700;
+}
+
+.eur::after {
+  content: " €";
+}
