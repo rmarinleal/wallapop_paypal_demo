@@ -39,7 +39,7 @@ async function renderMessage() {
 }
 
 onMounted(renderMessage);
-watch(() => props.amount, renderMessage);
+watch(() => [props.amount, props.align], renderMessage);
 </script>
 
 <template>

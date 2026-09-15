@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { addressLabel, checkout, money, selectedPayment, totals } from "../../store/checkout.js";
+import PayPalPayLaterMessage from "../PayPalPayLaterMessage.vue";
 import PaymentLogos from "../icons/PaymentLogos.vue";
 
 const t = computed(() => totals());
@@ -12,6 +13,11 @@ const t = computed(() => totals());
       <span>Total</span>
       <strong>{{ money(t.total) }} €</strong>
     </div>
+    <PayPalPayLaterMessage
+      v-if="['paypal', 'paylater'].includes(checkout.payment)"
+      compact
+      :amount="t.total"
+    />
     <p class="points">Tienes 0 puntos. Sigue acumulándolos para canjearlos en otra ocasión.</p>
 
     <div class="row">
