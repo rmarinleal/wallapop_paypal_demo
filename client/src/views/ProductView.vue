@@ -12,11 +12,17 @@ async function load() {
   error.value = "";
   product.value = null;
   const response = await fetch(`/api/products/${route.params.id}`);
-  if (!response.ok) {
-    error.value = "Producto no encontrado";
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    error.value = "No se pudo cargar el producto (API no disponible).";
     return;
   }
-  product.value = await response.json();
+  const data = await response.json();
+  if (!response.ok) {
+    error.value = data.error || "Producto no encontrado";
+    return;
+  }
+  product.value = data;
 }
 
 onMounted(load);

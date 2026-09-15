@@ -7,9 +7,15 @@ const products = ref([]);
 const loading = ref(true);
 
 onMounted(async () => {
-  const response = await fetch("/api/products");
-  products.value = await response.json();
-  loading.value = false;
+  try {
+    const response = await fetch("/api/products");
+    const data = await response.json();
+    products.value = Array.isArray(data) ? data : [];
+  } catch {
+    products.value = [];
+  } finally {
+    loading.value = false;
+  }
 });
 
 const filtered = computed(() => {
