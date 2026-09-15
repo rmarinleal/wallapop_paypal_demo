@@ -9,15 +9,12 @@ const t = computed(() => totals());
 
 <template>
   <div>
-    <div class="row total">
-      <span>Total</span>
-      <strong>{{ money(t.total) }} €</strong>
+    <div class="total-box">
+      <div class="total-line">
+        <span>Total</span>
+        <strong>{{ money(t.total) }} €</strong>
+      </div>
     </div>
-    <PayPalPayLaterMessage
-      v-if="['paypal', 'paylater'].includes(checkout.payment)"
-      compact
-      :amount="t.total"
-    />
     <p class="points">Tienes 0 puntos. Sigue acumulándolos para canjearlos en otra ocasión.</p>
 
     <div class="row">
@@ -28,14 +25,21 @@ const t = computed(() => totals());
       <button class="link" type="button" @click="checkout.step = 'delivery'">Editar</button>
     </div>
 
-    <div class="row">
-      <span class="pay">
+    <div class="row pay-row">
+      <div class="pay">
         <PaymentLogos :names="selectedPayment?.logos || []" />
-        <span>
+        <div class="pay-copy">
           <small>Método de pago</small>
           <strong>{{ selectedPayment?.label }}</strong>
-        </span>
-      </span>
+          <PayPalPayLaterMessage
+            v-if="checkout.payment === 'paylater'"
+            :key="`pay-summary-${t.total}`"
+            compact
+            placement="payment"
+            :amount="t.total"
+          />
+        </div>
+      </div>
       <button class="link" type="button" @click="checkout.step = 'payment'">Editar</button>
     </div>
 
@@ -60,7 +64,21 @@ const t = computed(() => totals());
   border-bottom: 1px solid var(--line);
 }
 
-.total strong {
+.total-box {
+  background: #f4f6f7;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+}
+
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.total-line strong {
   color: var(--teal);
   font-size: 22px;
 }
@@ -79,10 +97,21 @@ small {
   margin-top: 4px;
 }
 
+.pay-row {
+  align-items: flex-start;
+}
+
 .pay {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.pay-copy {
+  min-width: 0;
+  flex: 1;
 }
 
 .legal {

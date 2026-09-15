@@ -1,5 +1,5 @@
 <script setup>
-import { checkout, PAYMENT_METHODS } from "../../store/checkout.js";
+import { checkout, paymentMethods } from "../../store/checkout.js";
 import PaymentLogos from "../icons/PaymentLogos.vue";
 </script>
 
@@ -8,7 +8,7 @@ import PaymentLogos from "../icons/PaymentLogos.vue";
     <div class="wallet">Cuando tengas saldo en el monedero, podrás pagar con él.</div>
 
     <label
-      v-for="method in PAYMENT_METHODS"
+      v-for="method in paymentMethods"
       :key="method.id"
       class="option"
       :class="{ on: checkout.payment === method.id }"
@@ -42,7 +42,9 @@ import PaymentLogos from "../icons/PaymentLogos.vue";
   grid-template-columns: 72px 1fr 20px;
   align-items: center;
   gap: 8px;
-  padding: 16px 0;
+  min-height: 56px;
+  height: 56px;
+  padding: 0;
   border-bottom: 1px solid var(--line);
 }
 

@@ -23,7 +23,7 @@ export const env = {
   paypalEnv: (process.env.PAYPAL_ENV || "sandbox").toLowerCase(),
   paypalUrl: strip(process.env.PAYPAL_URL),
   currency: process.env.PAYPAL_CURRENCY || "EUR",
-  brandName: process.env.PAYPAL_BRAND_NAME || "Wallapop",
+  brandName: process.env.PAYPAL_BRAND_NAME || "Demo site: wallapop",
   port: Number(process.env.PORT) || 8012,
   clientOrigin: process.env.CLIENT_ORIGIN || "http://localhost:8011",
 };

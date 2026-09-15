@@ -26,11 +26,16 @@ export async function loadPaypalSdk() {
     await new Promise((resolve, reject) => {
       const existing = document.querySelector("script[data-paypal-sdk]");
       if (existing) {
-        existing.addEventListener("load", () => resolve());
-        existing.addEventListener("error", () =>
-          reject(new Error("No se pudo cargar el SDK de PayPal")),
+        if (window.paypal?.Messages) {
+          resolve();
+          return;
+        }
+        existing.addEventListener("load", () => resolve(), { once: true });
+        existing.addEventListener(
+          "error",
+          () => reject(new Error("No se pudo cargar el SDK de PayPal")),
+          { once: true },
         );
-        if (window.paypal?.Messages) resolve();
         return;
       }
 
@@ -54,4 +59,8 @@ export async function loadPaypalSdk() {
   });
 
   return pending;
+}
+
+export function formatPaypalAmount(value) {
+  return (Math.round(Number(value) * 100) / 100).toFixed(2);
 }

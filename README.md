@@ -22,7 +22,7 @@ PAYPAL_CLIENT_SECRET=...
 PAYPAL_ENV=sandbox
 PAYPAL_URL=https://api-m.sandbox.paypal.com
 PAYPAL_CURRENCY=EUR
-PAYPAL_BRAND_NAME=Wallapop
+PAYPAL_BRAND_NAME=Demo site: wallapop
 PORT=8012
 CLIENT_ORIGIN=http://localhost:8011
 ```
@@ -41,7 +41,7 @@ PAYPAL_CLIENT_SECRET
 PAYPAL_ENV=sandbox
 PAYPAL_URL=https://api-m.sandbox.paypal.com
 PAYPAL_CURRENCY=EUR
-PAYPAL_BRAND_NAME=Wallapop
+PAYPAL_BRAND_NAME=Demo site: wallapop
 ```
 
 No subas el `.env`. En producción las `return_url` / `cancel_url` de PayPal se calculan con el dominio de Vercel (`https://tu-proyecto.vercel.app/checkout/success`).

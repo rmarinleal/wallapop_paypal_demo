@@ -16,8 +16,8 @@ defineProps({
       class="paypal"
       src="/paypal-logo.png"
       alt="PayPal"
-      width="36"
-      height="36"
+      width="24"
+      height="24"
     />
   </span>
 </template>
@@ -27,6 +27,7 @@ defineProps({
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  height: 24px;
 }
 
 .chip {
@@ -74,8 +75,8 @@ defineProps({
 }
 
 .paypal {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 </style>

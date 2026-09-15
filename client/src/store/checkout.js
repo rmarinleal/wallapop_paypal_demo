@@ -23,7 +23,7 @@ export const PAYMENT_METHODS = [
   },
   {
     id: "paylater",
-    label: "PayPal Paylater",
+    label: "PayPal Paga en 3 plazos",
     fundingSource: "paylater",
     logos: ["paypal"],
   },
@@ -34,13 +34,27 @@ export const checkout = reactive({
   step: "delivery",
   product: null,
   delivery: "address",
-  payment: "paypal",
+  payment: "paylater",
   notice: "",
   loading: false,
 });
 
+export function paylaterLabel(price = checkout.product?.price) {
+  return Number(price) > 200
+    ? "PayPal Paga en hasta 24 plazos"
+    : "PayPal Paga en 3 plazos";
+}
+
+export const paymentMethods = computed(() =>
+  PAYMENT_METHODS.map((method) =>
+    method.id === "paylater"
+      ? { ...method, label: paylaterLabel() }
+      : method,
+  ),
+);
+
 export const selectedPayment = computed(() =>
-  PAYMENT_METHODS.find((method) => method.id === checkout.payment),
+  paymentMethods.value.find((method) => method.id === checkout.payment),
 );
 
 export function money(value) {
@@ -72,7 +86,7 @@ export function openCheckout(product) {
   checkout.product = product;
   checkout.step = "delivery";
   checkout.delivery = "address";
-  checkout.payment = "paypal";
+  checkout.payment = "paylater";
   checkout.notice = "";
   checkout.loading = false;
   checkout.open = true;
@@ -100,7 +114,7 @@ export function continueFromPayment() {
   const method = selectedPayment.value;
   if (!method || method.demoOnly) {
     checkout.notice =
-      "Este método no está disponible en el demo. Elige PayPal o PayPal Paylater.";
+      "Este método no está disponible en el demo. Elige PayPal o PayPal Paga en plazos.";
     return;
   }
   checkout.notice = "";
